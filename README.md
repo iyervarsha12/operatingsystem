@@ -1,5 +1,7 @@
 # operatingsystem
-Made my own operating system with a FIFO scheduler. It has support for interrupts with the IDT set up, Self-Preemption with Stacks, and timed pre-emption. This was done as a part of CS552 (Introduction to operating systems) with my partner, Timothy Borunov.
+Made my own operating system with a FIFO scheduler. It has support for interrupts with the IDT set up, Self-Preemption with Stacks, and timed pre-emption. This was done as a part of CS552 (Introduction to operating systems) with my partner, Timothy Borunov. It also finds usable memory in the system. 
+The GDT, IDT and PIT setup is done in boot.s. 
+init.c has the code to find usable memory, create different threads, etc.
 
 # HOW TO RUN
 
