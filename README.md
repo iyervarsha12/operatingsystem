@@ -7,23 +7,22 @@ init.c has the code to find usable memory, create different threads, etc.
 
 ## Just run the following commands in the directory with the files:
 
-// To build
+#### To build
 make
 
-// To run
+#### To run
 qemu-system-i386 -kernel memos-2.elf  -vnc :1
 
-// You can use -s -S to view it in debugging easier that way. Our implementation
-// makes sure that the timer is not running during yield, so if you breakpoint
-// on yield, and continue, you can essentially see what happens between each
-// timer interrupt without disrupting the timer itself with the gdb traps.
+You can use -s -S to view it in debugging easier that way. Our implementation
+makes sure that the timer is not running during yield, so if you breakpoint
+on yield, and continue, you can essentially see what happens between each
+timer interrupt without disrupting the timer itself with the gdb traps.
 
-// To view in terminal results
+#### To view in terminal results
 
 /path/to/vncviewer :1
 
-/*
-
+#### PIT configuration 
 As for the PIT, we have it configured to be 13.5 ms.
 You can reconfigure it by simply changing the byte values in boot.S where
 it says we write the high and low bytes to port 0x40 which is the data port
@@ -35,5 +34,5 @@ Divisor = 1193182 Hz/reload_value in Hz = 1193182Hz * Value_in_ms/1000
 So for 1 ms, it is 1193182 * 1/1000 = 1193 = 0x04A9
 so lobyte is 0xA9, and hibyte is 0x04
 
-*/
+
 
