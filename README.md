@@ -1,7 +1,13 @@
 # operatingsystem
-Made my own operating system with a FIFO scheduler. It has support for interrupts with the IDT set up, Self-Preemption with Stacks, and timed pre-emption. This was done as a part of CS552 (Introduction to operating systems) with my partner, Timothy Borunov. It also finds usable memory in the system. 
-The GDT, IDT and PIT setup is done in boot.s. 
-init.c has the code to find usable memory, create different threads, etc.
+Own operating system which can schedule threads in a FIFO order, where timed-self-preemption is done using a timer. This was done as a part of CS552 (Introduction to operating systems) with my partner, Timothy Borunov.
+
+# FURTHER INFO
+1. Populate our own Global Descriptor Table (required for telling the CPU about memory segments) and Interrupt Descriptor Table (required for telling the CPU where the interrupt service routines are located)
+2. Probe the system BIOS and report the usable memory in the machine by passing it from boot.s to init.c via multiboot
+3. N threads are created statically at boot time (no dynamic creation of threads supported). Each thread has a Thread Control Block that maintains its state information (thread id and other machine state registers). The thread creation function binds a thread in the pool to specific stack and function addresses.
+4. We have a stack thread emulating the main thread and maintain a runqueue of threads, composed of a linked list of TCBs
+5. Run a thread by saving state of current running thread, and then switching to the new thread
+6. A thread pre-empts itself when it goes over time (13.5ms), which has been implemented using the Programmable Interval Timer (PIT)
 
 # HOW TO RUN
 
